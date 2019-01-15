@@ -156,37 +156,6 @@ return
 Click, up
 return
 
-#IfWinActive, Minecraft 1.13.2 
-{
-Q::
-CoordMode, Mouse, Screen
-CoordMode, Pixel, Screen
-SetMouseDelay, -1
-SetBatchLines, -1
-
-	windowX := 0
-	windowY := 0
-	offsetX := 750
-	offsetY := 600
-	chestColor := 000000
-	chestOffset := 0
-	WinGetPos, windowX, windowY,,,Minecraft 1.13.2
-	PixelGetColor, chestColor, windowX + 720, windowY + 280
-	if (chestColor == 0xC6C6C6) {
-		chestOffset = 80
-	}
-	Loop, 3 {
-		Y_Index := A_Index
-		Loop, 9 {
-			MouseMove, windowX + offsetX + (A_Index - 1) * 55, windowY + offsetY + (Y_Index - 1) * 55 + chestOffset
-			Send +{Click}
-		}
-	}	
-	Send {Tab}
-
-return
-}
-#IF
 /* +55 */
 /*Gui, Add, TreeView
 P1 := TV_Add("First parent")
