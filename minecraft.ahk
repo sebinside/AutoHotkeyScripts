@@ -131,4 +131,4 @@ return
 
 
 
-#IF
+;#IF ;AHK kommt auf leere if bereiche garnicht klar. Deshalb weglassen oder Funktionen einfügen
