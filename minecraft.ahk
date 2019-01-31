@@ -122,7 +122,7 @@ BlockInput, MouseMoveOff
 return
 
 ; Sorts the inventory, NEEDS custom texture pack
-^Y::
+^X::
 	BlockInput, MouseMove
 	colorElytra := 16776192
 	colorArrow := 9868950
@@ -242,7 +242,7 @@ return
 return 
 
 ; Elytra hotswapping, inventory needs to be sorted first
-Y::
+X::
 BlockInput, MouseMove
 windowX := 0
 windowY := 0
@@ -280,3 +280,27 @@ Sleep, 20
 Send {Tab}
 BlockInput, MouseMoveOff
 return
+
+/*
+MLG Water, does not work on server skateSAD
+X::
+timerRuns := 0
+windowX := 0
+windowY := 0
+posX := 1200
+posY := 1070
+WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+Send {9}
+MouseMove, 0, 1000
+SetTimer, EmergencyTimer, 1
+return
+
+EmergencyTimer:
+timerRuns := timerRuns + 1
+if(timerRuns == 200) {
+	SetTimer, EmergencyTimer, Off
+	return
+}
+Send {RButton}
+return
+*/
