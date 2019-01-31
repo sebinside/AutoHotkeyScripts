@@ -240,3 +240,43 @@ return
 	}
 	BlockInput, MouseMoveOff
 return 
+
+; Elytra hotswapping, inventory needs to be sorted first
+Y::
+BlockInput, MouseMove
+windowX := 0
+windowY := 0
+offsetX := 744 + 1 + 7
+offsetY := 567 + 31
+WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+PixelGetColor, inventoryOpen, windowX + 720, windowY + 400
+if(inventoryOpen == 0xC6C6C6) {
+	Send {Tab}
+}
+Sleep, 10
+Send {Tab}
+Sleep, 100
+PixelGetColor, inventoryOpen, windowX + 720, windowY + 400
+if(inventoryOpen != 0xC6C6C6) {
+	BlockInput, MouseMoveOff
+	return
+}
+; Elytra Hotswap
+MouseMove, windowX + offsetX, windowY + offsetY
+Send {Click}
+MouseMove, windowX + offsetX, windowY + offsetY - 170
+Send {Click}
+MouseMove, windowX + offsetX, windowY + offsetY
+Send {Click}
+Sleep, 20
+; Rocket Hotswap
+MouseMove, windowX + offsetX + 54, windowY + offsetY
+Send {Click}
+MouseMove, windowX + offsetX + 54 * 4, windowY + offsetY - 60
+Send {Click}
+MouseMove, windowX + offsetX + 54, windowY + offsetY
+Send {Click}
+Sleep, 20
+Send {Tab}
+BlockInput, MouseMoveOff
+return
