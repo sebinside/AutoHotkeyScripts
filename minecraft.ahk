@@ -1,5 +1,8 @@
 ﻿; skate's minecraft scripts
 ; Please visit: https://github.com/sebinside/AutoHotkeyScripts
+; BEFORE USING THIS SCRIPT
+; SET GUI SCALE TO 3
+; WINDOW SIZE TO 1920x1080
 
 ; HEADER START
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -17,29 +20,7 @@ CoordMode, Pixel, Screen
 
 #ifwinactive Minecraft 1.13.2
 
-/*
-~+T:: ;suspenden alles sobald du T drückst
-~t::
-Suspend, On
-Hotkey, Enter, On
-Hotkey, NumPadEnter, On
-Hotkey, Escape, On
-Hotkey, t, Off
-Hotkey, +T, Off
-return
-
-~NumpadEnter:: ;aktivieren alles sobald du den Chat schließt oder nachricht abschickst
-~Enter::
-~Escape::
-Suspend, Permit
-Suspend, Off
-Hotkey, t, On
-Hotkey, +T, On
-Hotkey, Enter, Off
-Hotkey, NumPadEnter, Off
-Hotkey, Escape, Off
-return
-*/
+; Moves all the items in the inventory to a chest
 +Q::
 	BlockInput, MouseMove
 	windowX := 0
@@ -75,6 +56,7 @@ return
 	BlockInput, MouseMoveOff
 return
 
+; Grabs up to 63 items of a sort from a chest and moves it to the inventory
 Q::
 	BlockInput, MouseMove
 	inventoryColor := 9145227 ;0x8b8b8b
@@ -139,6 +121,7 @@ Q::
 BlockInput, MouseMoveOff
 return
 
+; Sorts the inventory, NEEDS custom texture pack
 ^Y::
 	BlockInput, MouseMove
 	colorElytra := 16776192
