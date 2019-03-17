@@ -281,6 +281,62 @@ Send {Tab}
 BlockInput, MouseMoveOff
 return
 
+isAutocrafting := 0
+
+; Autocrafting for Kelp Compression
+^Y::
+isAutocrafting := 1
+while isAutocrafting == 1 {
+
+; Over intput chest
+Send {RButton}
+; TODO: Interaction
+Sleep, 500
+Send {Tab}
+
+Send, {S down}
+Sleep, 1000
+Send, {S up}
+Sleep, 500
+
+; Over crafting table
+Send {RButton}
+; TODO: Interction
+Sleep, 500
+Send {Tab}
+
+Send, {D down}
+Sleep, 1000
+Send, {D up}
+Sleep, 500
+
+; Over output chest
+Send {RButton}
+; TODO: Interction
+Sleep, 500
+Send {Tab}
+
+Send, {A down}
+Sleep, 1000
+Send, {A up}
+Sleep, 500
+Send, {W down}
+Sleep, 500
+Send, {W up}
+Sleep, 1000
+}
+
++^Y::
+isAutocrafting := 0
+
+/*windowX := 0
+windowY := 0
+WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+mouseX := 0
+mouseY := 0
+MouseGetPos, mouseX, mouseY 
+MouseMove, -10, 0,,R*/
+
 /*
 MLG Water, does not work on server skateSAD
 X::
