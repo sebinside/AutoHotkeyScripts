@@ -284,14 +284,23 @@ return
 isAutocrafting := 0
 
 ; Autocrafting for Kelp Compression
+; Ensure the following: Recipe book inventory mode, Showing craftable activated
 ^Y::
+windowX := 0
+windowY := 0
+WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+mouseX := 0
+mouseY := 0
+MouseGetPos, mouseX, mouseY 
 isAutocrafting := 1
 while isAutocrafting == 1 {
 
 ; Over intput chest
 Send {RButton}
-; TODO: Interaction
 Sleep, 500
+MouseMove, windowX + 750, windowY + 400
+Send +{Click}
+Sleep, 50
 Send {Tab}
 
 Send, {S down}
@@ -301,8 +310,19 @@ Sleep, 500
 
 ; Over crafting table
 Send {RButton}
-; TODO: Interction
 Sleep, 500
+MouseMove, windowX + 555, windowY + 444 ; Click on recipe
+Send +{Click}
+Sleep, 250
+MouseMove, windowX + 1323, windowY + 450 ; Click on output
+Loop, 8 {
+	Send {Click}
+	Sleep, 50
+}
+Sleep, 50
+MouseMove, windowX + 1350, windowY + 767 ; Click on inventory slot
+Send {Click}
+Sleep, 50
 Send {Tab}
 
 Send, {D down}
@@ -312,8 +332,10 @@ Sleep, 500
 
 ; Over output chest
 Send {RButton}
-; TODO: Interction
 Sleep, 500
+MouseMove, windowX + 1130, windowY + 777 ; Click on inventory slot
+Send +{Click}
+Sleep, 50
 Send {Tab}
 
 Send, {A down}
@@ -325,17 +347,19 @@ Sleep, 500
 Send, {W up}
 Sleep, 1000
 }
+return
 
 +^Y::
 isAutocrafting := 0
+return
 
-/*windowX := 0
-windowY := 0
-WinGetPos, windowX, windowY,,,Minecraft 1.13.2
-mouseX := 0
-mouseY := 0
-MouseGetPos, mouseX, mouseY 
-MouseMove, -10, 0,,R*/
+; Farm fast
+Y::
+Send {Click}
+Sleep, 50
+Send {RButton}
+return
+
 
 /*
 MLG Water, does not work on server skateSAD
