@@ -32,6 +32,12 @@ NumpadSub::
 F::
 	Run, Photoshop.exe
 	return
+Q::
+	Send ``
+	Send ``
+	Send {Left}
+	return
+/*
 C::
 	Send <
 	Run curl ""http://localhost:8081/selectSelectedNamedVideoLayer?name=COLOR"",,hide
@@ -68,13 +74,14 @@ M::
 T::
 	RunWait curl ""http://localhost:8081/insertNamedRootItemIntoTrack?trackNumber=1&itemName=WHOSH&deltaInTicks=-38102400000&isVideoTrack=false"",,hide
 	return
+*/
 #IF
 
 
 ; #############################################################################################################################################
 ; WINDOW SWITCHES
 ; #############################################################################################################################################
-
+/*
 #IfWinActive 
 
 ; F1 holds the "BACK" script.
@@ -90,8 +97,8 @@ if WinActive("ahk_exe Adobe Premiere Pro.exe")
 if WinActive("ahk_exe explorer.exe")
 	Send !{left} ; ALT LEFT is the explorer shortcut to go "back" or "down" one folder level.
 Return
-
-
+*/
+/*
 ; Explorer shortcuts
 ^!F12::																								; Explorer SWITCH Button (Nyth Button 10)
 IfWinNotExist, ahk_class CabinetWClass
@@ -119,9 +126,9 @@ IfWinNotExist, ahk_class Premiere Pro
 	Run, Adobe Premiere Pro.exe
 WinActivate ahk_class Premiere Pro
 Return
-
+*/
 ; Bonus Scripts with Capslock Button
-
+/*
 #IF, GetKeyState("Capslock", "P")
 
 ^!F12::																								; Explorer RUN Button (Nyth Button 10)
@@ -135,11 +142,12 @@ return
 return
 
 #IF
-
+*/
 ; #############################################################################################################################################
 ; OTHER SHORTCUTS 
 ; #############################################################################################################################################
 
+/*
 +F4::
 Click, down, right
 return
@@ -155,7 +163,7 @@ return
 ^F5::
 Click, up
 return
-
+*/
 /* +55 */
 /*Gui, Add, TreeView
 P1 := TV_Add("First parent")
