@@ -37,6 +37,48 @@ Q::
 	Send ``
 	Send {Left}
 	return
+
+#IF
+
+; #############################################################################################################################################
+; RECORDING BUTTONS
+; #############################################################################################################################################
+
+~Numpad0::
+	Run curl ""http://localhost:42702/mode?key=Numpad0"",,hide
+	return
+
+~Numpad4::
+	Run curl ""http://localhost:42702/mode?key=Numpad4"",,hide
+	return
+
+~Numpad1::
+	Run curl ""http://localhost:42702/mode?key=Numpad1"",,hide
+	return
+
+~Numpad2::
+	Run curl ""http://localhost:42702/mode?key=Numpad2"",,hide
+	return
+
+~Numpad3::
+	Run curl ""http://localhost:42702/mode?key=Numpad3"",,hide
+	return
+
+~Numpad6::
+	Run curl ""http://localhost:42702/mode?key=Numpad6"",,hide
+	return
+
+~Numpad7::
+	Run curl ""http://localhost:42702/mode?key=Numpad7"",,hide
+	return
+
+~Numpad8::
+	Run curl ""http://localhost:42702/highlight?key=Numpad8"",,hide
+	return
+
+~NumpadEnter::
+	Run curl ""http://localhost:42702/highlight?key=NumpadEnter"",,hide
+	return
 /*
 C::
 	Send <
@@ -75,7 +117,7 @@ T::
 	RunWait curl ""http://localhost:8081/insertNamedRootItemIntoTrack?trackNumber=1&itemName=WHOSH&deltaInTicks=-38102400000&isVideoTrack=false"",,hide
 	return
 */
-#IF
+
 
 
 ; #############################################################################################################################################
