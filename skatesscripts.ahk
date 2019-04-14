@@ -38,6 +38,17 @@ Q::
 	Send {Left}
 	return
 
+V::
+	IfWinNotExist, ahk_exe Code.exe
+		Run, "C:\Users\Sebastian\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+	if WinActive("ahk_exe Code.exe")
+		WinMinimize ahk_exe Code.exe
+	else
+		WinActivate ahk_exe Code.exe
+	return
+
+C:: ; "C:\Program Files\ConEmu\ConEmu64.exe" -here -run {cmd} -cur_console:n
+	Send, ^ö
 #IF
 
 ; #############################################################################################################################################
