@@ -48,7 +48,23 @@ V::
 	return
 
 C:: ; "C:\Program Files\ConEmu\ConEmu64.exe" -here -run {cmd} -cur_console:n
-	Send, ^ö
+	if WinActive("ahk_exe Adobe Premiere Pro.exe") { ; Trigger new Chapter
+		RunWait curl ""http://localhost:8081/addCustomMarker?color=6"",,hide
+		Sleep, 30
+		RunWait curl ""http://localhost:8081/selectCurrentMarker"",,hide
+		Sleep, 100
+		Send, ö
+	} else
+		Send, ^ö
+	return
+X::
+	if WinActive("ahk_exe Adobe Premiere Pro.exe") ; Trigger new Chapter
+		RunWait curl ""http://localhost:8081/addCustomMarker?color=9"",,hide
+		Sleep, 30
+		RunWait curl ""http://localhost:8081/selectCurrentMarker"",,hide
+		Sleep, 100
+		Send, ö
+	return
 #IF
 
 ; #############################################################################################################################################
