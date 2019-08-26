@@ -10,7 +10,6 @@ Menu, Tray, Icon, shell32.dll, 16 ;this changes the icon into a little laptop th
 #singleinstance force ;so you can only run 1 script at a time and it doens't bother you about it.
 SetCapsLockState, AlwaysOff ; Disable Capslock
 ; HEADER END
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; #############################################################################################################################################
@@ -50,20 +49,20 @@ V::
 C:: ; "C:\Program Files\ConEmu\ConEmu64.exe" -here -run {cmd} -cur_console:n
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") { ; Trigger new Chapter
 		RunWait curl ""http://localhost:8081/addCustomMarker?color=6"",,hide
-		Sleep, 30
-		RunWait curl ""http://localhost:8081/selectCurrentMarker"",,hide
-		Sleep, 100
-		Send, ö
+		;Sleep, 30
+		;RunWait curl ""http://localhost:8081/selectCurrentMarker"",,hide
+		;Sleep, 100
+		;Send, ö
 	} else
 		Send, ^ö
 	return
 X::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") ; Trigger new Chapter
 		RunWait curl ""http://localhost:8081/addCustomMarker?color=9"",,hide
-		Sleep, 30
-		RunWait curl ""http://localhost:8081/selectCurrentMarker"",,hide
-		Sleep, 100
-		Send, ö
+		;Sleep, 30
+		;RunWait curl ""http://localhost:8081/selectCurrentMarker"",,hide
+		;Sleep, 100
+		;Send, ö
 	return
 #IF
 
@@ -101,6 +100,10 @@ X::
 
 ~Numpad8::
 	Run curl ""http://localhost:42702/highlight?key=Numpad8"",,hide
+	return
+	
+~Numpad9::
+	Run curl ""http://localhost:42702/mode?key=Numpad9"",,hide
 	return
 
 ~NumpadEnter::
