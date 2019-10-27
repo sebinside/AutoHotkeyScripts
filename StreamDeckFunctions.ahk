@@ -145,3 +145,16 @@ ScarlettVolume20() {
 ScarlettVolume30() {
     ScarlettVolume(30)
 }
+
+OpenTwitchAndChat() {
+    Run, chrome.exe https://www.twitch.tv/skate702/dashboard/live
+    Sleep, 10000
+    CoordMode, Mouse, Screen
+    WinGetPos, chromeX, chromeY,,,ahk_exe chrome.exe
+
+    BlockInput, MouseMove
+    MouseGetPos, mouseX, mouseY
+    MouseClick, left, chromeX + 1047, chromeY + 645
+    MouseMove, mouseX, mouseY, 0
+    BlockInput, MouseMoveOff
+}
