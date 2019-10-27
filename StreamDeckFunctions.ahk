@@ -48,23 +48,100 @@ CreateAndOrderLeftScreen() {
     ; Move windows to their final position
     hWnd := WinExist("Timeular")
     WinMove,ahk_id %hwnd%,,-1193,850,1200,740
-    WinActivate, Timeular
 
     hWnd := WinExist("ahk_exe Scarlett MixControl.exe")
     WinMove,ahk_id %hwnd%,,-1917,231,1025,622
-    WinActivate, ahk_exe Scarlett MixControl.exe
     
     hWnd := WinExist("ahk_exe Spotify.exe")
     WinMove,ahk_id %hwnd%,,-894,610,894,972
-    WinActivate, ahk_exe Spotify.exe
 
     hWnd := WinExist("ahk_exe Discord.exe")
     WinMove,ahk_id %hwnd%,,-1080,-336,1080,946
-    WinActivate, ahk_exe Discord.exe
+
+    ; Separate function to set window order
+    LeftScreenActivate()
 
     ; Additional step for broken spotify
     Sleep, 1000
     WinClose, ahk_exe Spotify.exe
     Sleep, 1000
     Run, C:\Users\Sebastian\AppData\Roaming\Spotify\Spotify.exe
+}
+
+LeftScreenActivate() {
+    WinActivate, Timeular
+    WinActivate, ahk_exe Scarlett MixControl.exe
+    WinActivate, ahk_exe Spotify.exe
+    WinActivate, ahk_exe Discord.exe
+}
+
+ScarlettMuteUnmute() {
+    if !WinExist("ahk_exe Scarlett MixControl.exe") {
+        Run, C:\Program Files (x86)\Focusrite\Scarlett MixControl\Scarlett MixControl.exe
+        ; End here, since the window is sometimes a little bit buggy
+    } else {
+        WinActivate, ahk_exe Scarlett MixControl.exe
+        CoordMode, Mouse, Screen
+        WinGetPos, scarlettX, scarlettY,,,ahk_exe Scarlett MixControl.exe
+        BlockInput, MouseMove
+        MouseGetPos, mouseX, mouseY
+        ; Mute / Unmute speaker
+        MouseClick, left, scarlettX + 897, scarlettY + 398
+        MouseClick, left, scarlettX + 897, scarlettY + 421
+        ; Mute / Unmute headphone
+        MouseClick, left, scarlettX + 956, scarlettY + 398
+        MouseClick, left, scarlettX + 956, scarlettY + 421
+        MouseMove, mouseX, mouseY, 0
+        BlockInput, MouseMoveOff
+
+        ; Restore left screen layout (where the window is usually)
+        LeftScreenActivate()
+    }
+}
+
+ScarlettVolume(volume) {
+    if !WinExist("ahk_exe Scarlett MixControl.exe") {
+        Run, C:\Program Files (x86)\Focusrite\Scarlett MixControl\Scarlett MixControl.exe
+        ; End here, since the window is sometimes a little bit buggy
+    } else {
+        if(volume > 0) {
+            ScarlettVolume(0)
+        }
+        WinActivate, ahk_exe Scarlett MixControl.exe
+        CoordMode, Mouse, Screen
+        WinGetPos, scarlettX, scarlettY,,,ahk_exe Scarlett MixControl.exe
+        BlockInput, MouseMove
+        MouseGetPos, mouseX, mouseY
+        if(volume = 0) {
+            MouseClickDrag, left, scarlettX + 926, scarlettY + 512, scarlettX + 926, scarlettY + 150
+        } else if(volume = 10) {
+            MouseClickDrag, left, scarlettX + 926, scarlettY + 512, scarlettX + 926, scarlettY + 558
+        } else if(volume = 20) {
+            MouseClickDrag, left, scarlettX + 926, scarlettY + 512, scarlettX + 926, scarlettY + 587
+        } else if(volume = 30) {
+            MouseClickDrag, left, scarlettX + 926, scarlettY + 512, scarlettX + 926, scarlettY + 609
+        }
+
+        MouseMove, mouseX, mouseY, 0
+        BlockInput, MouseMoveOff
+
+        ; Restore left screen layout (where the window is usually)
+        LeftScreenActivate()
+    }
+}
+
+ScarlettVolume0() {
+    ScarlettVolume(0)
+}
+
+ScarlettVolume10() {
+    ScarlettVolume(10)
+}
+
+ScarlettVolume20() {
+    ScarlettVolume(20)
+}
+
+ScarlettVolume30() {
+    ScarlettVolume(30)
 }
