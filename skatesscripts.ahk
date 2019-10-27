@@ -70,6 +70,8 @@ X::
 ; RECORDING BUTTONS
 ; #############################################################################################################################################
 
+/*
+
 ~Numpad0::
 	Run curl ""http://localhost:42702/mode?key=Numpad0"",,hide
 	return
@@ -109,6 +111,8 @@ X::
 ~NumpadEnter::
 	Run curl ""http://localhost:42702/highlight?key=NumpadEnter"",,hide
 	return
+
+	*/
 /*
 C::
 	Send <
