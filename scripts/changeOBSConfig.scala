@@ -14,7 +14,7 @@ object Main extends App {
   val contentRecording = "SceneCollection=1 Recording\nSceneCollectionFile=1_Recording\nProfile=1.1 Recording StSt\nProfileDir=11_Recording_StSt"
   val contentStreaming = "SceneCollection=2 Streaming\nSceneCollectionFile=2_Streaming\nProfile=2 Streaming\nProfileDir=2_Streaming"
 
-  // Check whitch is there
+  // Check current configuration
   val fileContent = scala.io.Source.fromFile(iniFile).getLines.mkString("\n")
   val foundRecording = fileContent.contains(contentRecording)
   val foundStreaming = fileContent.contains(contentStreaming)
