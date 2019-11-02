@@ -47,7 +47,7 @@ CreateAndOrderLeftScreen() {
     }
     ; Move windows to their final position
     hWnd := WinExist("Timeular")
-    WinMove,ahk_id %hwnd%,,-1193,850,1200,740
+    WinMove,ahk_id %hwnd%,,-1200,850,1200,740
 
     hWnd := WinExist("ahk_exe Scarlett MixControl.exe")
     WinMove,ahk_id %hwnd%,,-1917,231,1025,622
