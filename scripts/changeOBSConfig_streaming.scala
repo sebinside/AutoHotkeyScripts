@@ -27,9 +27,6 @@ object Main extends App {
   if(foundRecording) {
     updatedFileContent = fileContent.replace(contentRecording, contentStreaming)
     println("Replaced recording settings with streaming settings.")
-  } else if (foundStreaming) {
-    updatedFileContent = fileContent.replace(contentStreaming, contentRecording)
-    println("Replaced streaming settings with recording settings.")
   } else {
     println("Did nothing.")
   }
