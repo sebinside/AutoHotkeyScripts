@@ -17,9 +17,17 @@ CoordMode, Pixel, Screen
 #Usehook On
 ; HEADER END
 
-#ifwinactive Minecraft 1.14.3
++F4::
+Click, down, right
+return
+
++F5::
+Click, up, right
+return
+
+#ifwinactive Minecraft 1.14.4
 ~Tab::
-  WinGetPos, windowX, windowY,,,Minecraft 1.14.3
+  WinGetPos, windowX, windowY,,,Minecraft 1.14.4
   PixelGetColor, inventoryOpen, windowX + 720, windowY + 400
   if(inventoryOpen == 0xC6C6C6) {
     Send, {Esc}
