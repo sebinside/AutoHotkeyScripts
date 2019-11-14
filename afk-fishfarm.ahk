@@ -77,11 +77,7 @@ checkDamage() {
   PixelGetColor, damageBar, windowX + 470, windowY + 702,RGB
   damageBarStart := SubStr(damageBar, 3,1)
   if(damageBarStart == "D" or damageBarStart == "E" or damageBarStart == "F") {
-    toggleMining(false)
-    Send, {Esc}
-    Sleep, 1000
-    WinGetPos, windowX, windowY,,,Minecraft 1.14.4
-    MouseClick, left, windowX + 500, windowY + 420
+    logMeOut()
   }
 }
 
@@ -100,7 +96,22 @@ checkDisconnect() {
 }
 
 checkLamp() {
-  ; TODO
+  WinGetPos, windowX, windowY,,,Minecraft 1.14.4
+  PixelGetColor, lampColor, windowX + 40, windowY + 80,RGB
+  colorArray := hexToRGB(lampColor)
+  redValue := colorArray[1]
+  greenValue := colorArray[2]
+  if(redValue > greenValue) {
+    logMeOut()
+  }
+}
+
+logMeOut() {
+    toggleMining(false)
+    Send, {Esc}
+    Sleep, 1000
+    WinGetPos, windowX, windowY,,,Minecraft 1.14.4
+    MouseClick, left, windowX + 500, windowY + 420
 }
 
 checkAll() {
@@ -111,4 +122,13 @@ checkAll() {
     checkLamp()
     Sleep, 5000
   }
+}
+
+; Source: https://stackoverflow.com/questions/54666344
+hexToRGB(s) {
+    SetFormat, Integer, % (f := A_FormatInteger) = "H" ? "D" : f
+    Loop, % StrLen(s := RegExReplace(s, "^(?:0x|#)")) // 2
+        c%A_Index% := 0 + (h := "0x" . SubStr(s, A_Index * 2 - 1, 2))
+    SetFormat, Integer, %f%
+    Return, [c1, c2, c3]
 }
