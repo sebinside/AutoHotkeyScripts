@@ -158,3 +158,27 @@ OpenTwitchAndChat() {
     MouseMove, mouseX, mouseY, 0
     BlockInput, MouseMoveOff
 }
+
+AddAndSelectMarker(markerColor) {
+    customURL = http://localhost:8081/addCustomMarker?color=%markerColor%
+    RunWait curl %customURL% ,,hide
+    Send, {Right 3}
+    Sleep, 300
+    Send, ^+a
+    Sleep, 300
+    RunWait curl ""http://localhost:8081/selectCurrentMarker"" ,,hide
+    Sleep, 300
+    Send, ö
+}
+
+AddAndSelectMarkerRed() {
+    AddAndSelectMarker(6)
+}
+
+AddAndSelectMarkerBlue() {
+    AddAndSelectMarker(9)
+}
+
+AddAndSelectMarkerGreen() {
+    AddAndSelectMarker(13)
+}

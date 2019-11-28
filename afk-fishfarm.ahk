@@ -117,9 +117,9 @@ logMeOut() {
 checkAll() {
   global isAlive
   while(isAlive == 1) {
-    checkDamage()
+    ;checkDamage()
     checkDisconnect()
-    checkLamp()
+    ;checkLamp()
     Sleep, 5000
   }
 }
