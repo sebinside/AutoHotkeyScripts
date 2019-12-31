@@ -13,7 +13,7 @@ SetCapsLockState, AlwaysOff ; Disable Capslock
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; #############################################################################################################################################
-; CAPSLOCK SHORTCUTS (except Window Switch Buttons)
+; CAPSLOCK SHORTCUTS
 ; #############################################################################################################################################
 
 #IF, GetKeyState("Capslock", "P")
@@ -21,16 +21,7 @@ F1::																								; Open my Autohotkey Script Folder
 	autohotkeyfilepath := "C:\Users\" . A_UserName . "\Dropbox\autohotkey"
 	Run, %autohotkeyfilepath%
 	return
-O::
-	cuttingpath := "E:\cutting"
-	Run, %cuttingpath%
-	return
-NumpadSub::
-	RunWait, %ComSpec% /k "cd "C:\Users\Sebastian\Documents\skate702 Legacy\letsplaytodolist\""		; Execute LetsPlayToDoList (set mode)
-	return
-F::
-	Run, Photoshop.exe
-	return
+
 Q::
 	Send ``
 	Send ``
@@ -45,11 +36,90 @@ V::
 	else
 		WinActivate ahk_exe Code.exe
 	return
+
+E::
+	Send, [
+	return
+R::
+	Send, ]
+	return
+D::
+	Send, {{}
+	return
+F::
+	Send, {}}
+	return
+
+X::
+	callExplorer()
+	return
+C::
+	callChrome()
+	return
+
 #IF
 
 ; #############################################################################################################################################
-; RECORDING BUTTONS
+; MOUSE BUTTONS
 ; #############################################################################################################################################
+
+; Mouse button 1 (S in premiere, 9 in Minecraft, explorer else)
+^!F12::
+	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
+		Send, s
+	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
+		Send, 9
+	} else {
+		callExplorer()
+	}
+	Return
+
+; Mouse button 2 (A in premiere, 8 in Minecraft, chrome else)
+^!F11::
+	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
+		Send, a
+	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
+		Send, 8
+	} else {
+		callChrome()
+	}
+	Return
+
+; Mouse button 3 (mute ts, else move mouse to move in premiere)
+^!F10::
+	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
+		BlockInput, MouseMove
+        MouseGetPos, mouseX, mouseY
+		MouseClick, left, 110, 190,, 0
+		MouseMove, mouseX, mouseY, 0
+        BlockInput, MouseMoveOff
+	} else {
+		Send, ^{F10}
+	}
+	Return
+
+; #############################################################################################################################################
+; FUNCTIONS
+; #############################################################################################################################################
+
+callExplorer() {
+	IfWinNotExist, ahk_class CabinetWClass
+			Run, explorer.exe
+		GroupAdd, taranexplorers, ahk_class CabinetWClass 
+		if WinActive("ahk_exe explorer.exe")
+			GroupActivate, taranexplorers, r
+		else
+			WinActivate ahk_class CabinetWClass 
+}
+
+callChrome() {
+	IfWinNotExist, ahk_exe chrome.exe
+			Run, chrome.exe
+		if WinActive("ahk_exe chrome.exe")
+			Send ^{tab}
+		else
+			WinActivate ahk_exe chrome.exe
+}
 
 /*
 
