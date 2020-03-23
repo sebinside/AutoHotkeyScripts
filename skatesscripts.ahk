@@ -56,7 +56,27 @@ X::
 C::
 	callChrome()
 	return
-
+1:: 
+	Send, [1]
+	return
+2:: 
+	Send, [2]
+	return
+3:: 
+	Send, [3]
+	return
+4:: 
+	Send, [4]
+	return
+5:: 
+	Send, [5]
+	return
+6:: 
+	Send, [6]
+	return
+7:: 
+	Send, [7]
+	return
 #IF
 
 ; #############################################################################################################################################
@@ -66,7 +86,7 @@ C::
 ; Mouse button 1 (S in premiere, 9 in Minecraft, explorer else)
 ^!F12::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
-		Send, s
+		Send, N
 	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
 		Send, 9
 	} else {
@@ -77,7 +97,7 @@ C::
 ; Mouse button 2 (A in premiere, 8 in Minecraft, chrome else)
 ^!F11::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
-		Send, a
+		Send, B
 	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
 		Send, 8
 	} else {
