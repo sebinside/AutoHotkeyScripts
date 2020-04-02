@@ -29,12 +29,7 @@ Q::
 	return
 
 V::
-	IfWinNotExist, ahk_exe Code.exe
-		Run, "C:\Users\Sebastian\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-	if WinActive("ahk_exe Code.exe")
-		WinMinimize ahk_exe Code.exe
-	else
-		WinActivate ahk_exe Code.exe
+	callVSCode()
 	return
 
 E::
@@ -105,7 +100,7 @@ C::
 	}
 	Return
 
-; Mouse button 3 (mute ts, else move mouse to move in premiere)
+; Mouse button 3 (mute ts in minecraft, else move mouse to move in premiere, focus code)
 ^!F10::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
 		BlockInput, MouseMove
@@ -113,8 +108,10 @@ C::
 		MouseClick, left, 110, 190,, 0
 		MouseMove, mouseX, mouseY, 0
         BlockInput, MouseMoveOff
-	} else {
+	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
 		Send, ^{F10}
+	} else {
+		callVSCode()
 	}
 	Return
 
@@ -139,6 +136,15 @@ callChrome() {
 			Send ^{tab}
 		else
 			WinActivate ahk_exe chrome.exe
+}
+
+callVSCode() {
+	IfWinNotExist, ahk_exe Code.exe
+			Run, "C:\Users\Sebastian\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+		if WinActive("ahk_exe Code.exe")
+			Send ^{PgDn}
+		else
+			WinActivate ahk_exe Code.exe
 }
 
 /*
