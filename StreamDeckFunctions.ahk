@@ -29,10 +29,10 @@ OpenAndMoveCamFolder() {
 
 CreateAndOrderLeftScreen() {
     ; Test window existance first
-    if !WinExist("ahk_exe Discord.exe") {
-        Run, C:\Users\Sebastian\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk
-        Sleep, 1000
-    }
+    ;if !WinExist("ahk_exe Discord.exe") {
+    ;    Run, C:\Users\Sebastian\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk
+    ;    Sleep, 1000
+    ;}
     ;if !WinExist("ahk_exe Timeular.exe") {
     ;    Run, C:\Users\Sebastian\AppData\Local\Programs\Timeular\Timeular.exe
     ;    Sleep, 1000
