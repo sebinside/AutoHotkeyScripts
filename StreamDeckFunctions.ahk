@@ -183,38 +183,34 @@ AddAndSelectMarkerGreen() {
     AddAndSelectMarker(13)
 }
 
-RecallClipboard(int) {
-    
-    Send, ^+a ; deselect everything
-    LoadFromFile("clipTEXT.clp") ;to create this file, just highlight some plain text, copy it, and use insideclipboard.exe to save it as clipTEXT.clp. The clipboard MUST have some text inside; it CANNOT be completely empty. This has the effect of DELETING all the aspects of the clipboard, EXCEPT for text.
-	sleep 250
-    clipboard = 
-	;The clipboard is now completely empty.
-	sleep 10
-	
-	;tooltip, now pasting NOTHING into premiere....
-	WinActivate, Adobe Premiere Pro ;extremely important to ensure you are still active/focused on Premiere
-	SendInput, {Shift Down}{Shift Up}
-	sleep 10
-	SendInput, {Ctrl Down}{v Down} ;this is a MUCH more robust way of using the keyboard shortcuts to PASTE, rather than just using "Send ^v"
-	sleep 5
-	SendInput, {v Up}{Ctrl Up}
-	sleep 20
-	
-    sleep 100
+TargetPremiereTracks(videoTrack, audioTrack) {
+    customURL = http://localhost:8081/targetTracks?videoTrack=%videoTrack%&audioTrack=%audioTrack%
+    RunWait curl %customURL% ,,hide
+    sleep 50
+}
 
-	;It is necessary to PASTE this COMPLETELY BLANK clipboard into premiere, or Premiere won't "know" that the clipboard has been completely emptied.
-	;If you don't do this, Premiere will just use whatever thing you had previously copied inside of Premiere.
-	clipboard = 
-	;the above line is another method for clearing the clipboard that must also be done to ensure a totally empty clipboard
-	sleep 30
-	;tooltip, "clip" . %int% . ".clp" ;this code doesn't work
-	;tooltip, now preparing to paste %int%
-	;msgbox, %int%
-	WinActivate, Adobe Premiere Pro 
-	LoadFromFile("clip" . int . ".clp") ;now we are loading the previously saved clipboard file!
-	sleep 250
-	WinActivate, Adobe Premiere Pro
+LoadPremiereClipboard(clipName) {
+
+    WinActivate, Adobe Premiere Pro
+
+    ; Load some text to... well premiere things.
+    RunWait, %comspec% /c E:\code\PremiereClipboard\PremiereClipboard\PremiereClipboard\bin\Debug\PremiereClipboard.exe --fill
+
+    ; After loading some text, tab out of premiere and tab back in. This trigger some weird reset action, nobody will ever understand
+    sleep 500
+    Send, !{Tab}
+    sleep 500
+    Send, !{Tab}
+    sleep 500
+
+    ; Load clipboard (don't forget to change paths)
+    RunWait, %comspec% /c E:\code\PremiereClipboard\PremiereClipboard\PremiereClipboard\bin\Debug\PremiereClipboard.exe --load E:\cut\clipboards\%clipName%
+
+    sleep 10
+    Send, ^+a ; deselect everything
+    sleep 10
+
+    ; Ctrl + V, but the "save" taran way
 	SendInput, {Shift Down}{Shift Up}{Ctrl Down}{v Down}
 	sleep 5
 	SendInput, {v Up}{Ctrl Up}
@@ -222,18 +218,46 @@ RecallClipboard(int) {
 	
 	sleep 10
 	Send, ^+a ; deselect everything
-	
 }
 
-LoadFromFile(name) {
-	; You'll need to change these paths too!
-	RunWait, %comspec% /c C:\Users\Sebastian\InsideClipboard.exe /loadclp C:\Users\Sebastian\%name%
+PremierePasteAd() {
+    TargetPremiereTracks(6, 1000)
+    LoadPremiereClipboard("ad.clp") 
 }
 
-LoadA() {
-    RecallClipboard("A")
+PremierePasteChapter() {
+    TargetPremiereTracks(3, 1000)
+    LoadPremiereClipboard("chapter.clp") 
 }
 
-LoadB() {
-    RecallClipboard("B")
+PremierePasteGlitch() {
+    TargetPremiereTracks(5, 2)
+    LoadPremiereClipboard("glitch.clp") 
+}
+
+PremierePasteInfo() {
+    TargetPremiereTracks(3, 1000)
+    LoadPremiereClipboard("info.clp") 
+}
+
+PremierePasteIntro() {
+    TargetPremiereTracks(3, 2)
+    LoadPremiereClipboard("intro.clp")
+    sleep 200
+    Run https://fontawesome.com/icons?d=gallery&m=free
+}
+
+PremierePasteOutro() {
+    TargetPremiereTracks(1, 1000)
+    LoadPremiereClipboard("outro.clp") 
+}
+
+PremierePasteRewind() {
+    TargetPremiereTracks(4, 2)
+    LoadPremiereClipboard("rewind.clp") 
+}
+
+PremierePasteSignature() {
+    TargetPremiereTracks(3, 2)
+    LoadPremiereClipboard("signature.clp") 
 }
