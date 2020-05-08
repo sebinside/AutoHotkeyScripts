@@ -274,7 +274,7 @@ PremiereReloadCEP2AHK() {
     Send, {Right}
     Sleep, 100
     Send, {Enter}
-Sleep, 100
+    Sleep, 100
     Send, ^w
     Sleep, 200
     Send, {Alt}
@@ -283,7 +283,7 @@ Sleep, 100
     Sleep, 100
     Send, {Down}
     Sleep, 100
- Send, {Down}
+    Send, {Down}
     Sleep, 100
     Send, {Right}
     Sleep, 100
