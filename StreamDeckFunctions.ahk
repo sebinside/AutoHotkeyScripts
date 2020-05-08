@@ -33,10 +33,10 @@ CreateAndOrderLeftScreen() {
     ;    Run, C:\Users\Sebastian\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk
     ;    Sleep, 1000
     ;}
-    ;if !WinExist("ahk_exe Timeular.exe") {
-    ;    Run, C:\Users\Sebastian\AppData\Local\Programs\Timeular\Timeular.exe
-    ;    Sleep, 1000
-    ;}
+    if !WinExist("ahk_exe Timeular.exe") {
+        Run, C:\Users\Sebastian\AppData\Local\Programs\Timeular\Timeular.exe
+        Sleep, 1000
+    }
     if !WinExist("ahk_exe Spotify.exe") {
         Run, C:\Users\Sebastian\AppData\Roaming\Spotify\Spotify.exe
         Sleep, 1000
@@ -46,8 +46,8 @@ CreateAndOrderLeftScreen() {
         Sleep, 1000
     }
     ; Move windows to their final position
-    ;hWnd := WinExist("Timeular")
-    ;WinMove,ahk_id %hwnd%,,-1200,850,1200,740
+    hWnd := WinExist("Timeular")
+    WinMove,ahk_id %hwnd%,,-1200,850,1200,740
 
     hWnd := WinExist("ahk_exe Scarlett MixControl.exe")
     WinMove,ahk_id %hwnd%,,-1917,609,1025,622 ; 231
@@ -260,4 +260,32 @@ PremierePasteRewind() {
 PremierePasteSignature() {
     TargetPremiereTracks(3, 2)
     LoadPremiereClipboard("signature.clp") 
+}
+
+PremiereReloadCEP2AHK() {
+    Send, {Alt}
+    Sleep, 100
+    Send, f
+    Sleep, 100
+    Send, {Down}
+    Sleep, 100
+    Send, {Down}
+    Sleep, 100
+    Send, {Right}
+    Sleep, 100
+    Send, {Enter}
+Sleep, 100
+    Send, ^w
+    Sleep, 200
+    Send, {Alt}
+    Sleep, 100
+    Send, f
+    Sleep, 100
+    Send, {Down}
+    Sleep, 100
+ Send, {Down}
+    Sleep, 100
+    Send, {Right}
+    Sleep, 100
+    Send, {Enter}
 }
