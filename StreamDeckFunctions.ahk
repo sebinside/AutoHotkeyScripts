@@ -265,7 +265,7 @@ PremierePasteSignature() {
 PremiereReloadCEP2AHK() {
     Send, {Alt}
     Sleep, 100
-    Send, f
+Send, f
     Sleep, 100
     Send, {Down}
     Sleep, 100
@@ -274,7 +274,7 @@ PremiereReloadCEP2AHK() {
     Send, {Right}
     Sleep, 100
     Send, {Enter}
-    Sleep, 100
+Sleep, 100
     Send, ^w
     Sleep, 200
     Send, {Alt}
@@ -283,7 +283,7 @@ PremiereReloadCEP2AHK() {
     Sleep, 100
     Send, {Down}
     Sleep, 100
-    Send, {Down}
+Send, {Down}
     Sleep, 100
     Send, {Right}
     Sleep, 100
