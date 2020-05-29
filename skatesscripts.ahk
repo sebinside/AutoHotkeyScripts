@@ -34,6 +34,10 @@ Q::
 	Send {Left}
 	return
 
+T::
+	Send \
+	return
+
 V::
 	callVSCode()
 	return

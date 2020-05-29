@@ -33,10 +33,10 @@ CreateAndOrderLeftScreen() {
     ;    Run, C:\Users\Sebastian\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk
     ;    Sleep, 1000
     ;}
-    if !WinExist("ahk_exe Timeular.exe") {
-        Run, C:\Users\Sebastian\AppData\Local\Programs\Timeular\Timeular.exe
-        Sleep, 1000
-    }
+    ;if !WinExist("ahk_exe Timeular.exe") {
+    ;    Run, C:\Users\Sebastian\AppData\Local\Programs\Timeular\Timeular.exe
+    ;    Sleep, 1000
+    ;}
     if !WinExist("ahk_exe Spotify.exe") {
         Run, C:\Users\Sebastian\AppData\Roaming\Spotify\Spotify.exe
         Sleep, 1000
@@ -46,8 +46,8 @@ CreateAndOrderLeftScreen() {
         Sleep, 1000
     }
     ; Move windows to their final position
-    hWnd := WinExist("Timeular")
-    WinMove,ahk_id %hwnd%,,-1200,850,1200,740
+    ;hWnd := WinExist("Timeular")
+    ;WinMove,ahk_id %hwnd%,,-1200,850,1200,740
 
     hWnd := WinExist("ahk_exe Scarlett MixControl.exe")
     WinMove,ahk_id %hwnd%,,-1917,609,1025,622 ; 231
@@ -69,7 +69,7 @@ CreateAndOrderLeftScreen() {
 }
 
 LeftScreenActivate() {
-    WinActivate, Timeular
+    ;WinActivate, Timeular
     WinActivate, ahk_exe Scarlett MixControl.exe
     WinActivate, ahk_exe Spotify.exe
     WinActivate, ahk_exe Discord.exe
@@ -288,4 +288,26 @@ PremiereReloadCEP2AHK() {
     Send, {Right}
     Sleep, 100
     Send, {Enter}
+}
+
+PremiereSaveCopyAs() {
+    if WinActive("ahk_exe Adobe Premiere Pro.exe") {
+        Send, ^!s
+        WinWaitActive,Projekt speichern, , 10
+        if ErrorLevel {
+            MsgBox, Waiting timeout...
+        } else {
+            Sleep, 1000
+            Send, {Right}
+            Sleep, 50
+            Send, {BS}{BS}{BS}{BS}{BS}{BS}{BS}
+            Sleep, 50
+            FormatTime, TimeString,,  yy-MM-dd-HH-mm-ss
+            Send, {Space}
+            Send, %TimeString%
+            Sleep, 300
+            Send, {Enter}
+        }
+    }
+    return
 }
