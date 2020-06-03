@@ -42,6 +42,10 @@ V::
 	callVSCode()
 	return
 
+G::
+	Send, ^!j
+	return
+
 E::
 	Send, [
 	return
