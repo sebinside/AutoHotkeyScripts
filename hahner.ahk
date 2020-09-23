@@ -1,4 +1,5 @@
 ﻿; WINDOWS BASICS - Simple functions which shall be present on every of my windows machines
+; HAHNER version - optimized for work
 ; Partly based on: https://github.com/TaranVH/2nd-keyboard
 
 ; HEADER START
@@ -26,6 +27,20 @@ SC00D::
 PgUp::
 	return
 PgDn::
+	return
+
+; Create windows N for One Note
+#N::
+	if WinExist(,"OneNote for Windows 10") {
+		Process, Close, onenoteim.exe
+    } else {
+		Run, C:\Users\hahner\Documents\AutoHotkeyScripts\OneNoteApp.lnk
+    }
+	return
+
+; Overwrite WIN+E for custom start folder
+#E::
+	Run, explorer.exe C:\hahner
 	return
 
 ; #############################################################################################################################################
@@ -92,19 +107,6 @@ SC00D::
  	SendRaw %String%
 	return
 
-; For english keyboards
-Q::
-	Send, <
-	return
-
-W::
-	Send, >
-	return
-
-#::
-	String := "'"
- 	SendRaw %String%
-	return
 #IF
 
 ; #############################################################################################################################################
@@ -115,8 +117,6 @@ W::
 ^!F12::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
 		Send, N
-	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
-		Send, 9
 	} else {
 		callExplorer()
 	}
@@ -126,10 +126,8 @@ W::
 ^!F11::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
 		Send, B
-	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
-		Send, 8
 	} else {
-		callChrome()
+		callEdge()
 	}
 	Return
 
@@ -141,11 +139,14 @@ W::
 		MouseClick, left, 110, 190,, 0
 		MouseMove, mouseX, mouseY, 0
         BlockInput, MouseMoveOff
-	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
-		Send, ^{F10}
 	} else {
 		callVSCode()
 	}
+	Return
+
+; Mouse 4 (goto acrobat)
+^!F9::
+	callAcrobat()
 	Return
 
 ; #############################################################################################################################################
@@ -171,11 +172,32 @@ callChrome() {
 			WinActivate ahk_exe chrome.exe
 }
 
+callEdge() {
+	IfWinNotExist, ahk_exe msedge.exe
+			Run, msedge.exe
+		if WinActive("ahk_exe msedge.exe")
+			Send ^{tab}
+		else
+			WinActivate ahk_exe msedge.exe
+}
+
 callVSCode() {
 	IfWinNotExist, ahk_exe Code.exe
-			Run, "C:\Users\seb\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+			Run, "C:\Users\hahner\AppData\Local\Programs\Microsoft VS Code\Code.exe"
 		if WinActive("ahk_exe Code.exe")
 			Send ^{PgDn}
 		else
+
 			WinActivate ahk_exe Code.exe
+}
+
+callAcrobat() {
+	IfWinNotExist, ahk_exe Acrobat.exe
+			Run, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Acrobat DC.lnk"
+			Sleep, 200
+			Send {Enter}
+		if WinActive("ahk_exe Acrobat.exe")
+			Send ^{tab}
+		else
+			WinActivate ahk_exe Acrobat.exe
 }
