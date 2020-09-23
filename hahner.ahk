@@ -43,6 +43,30 @@ PgDn::
 	Run, explorer.exe C:\hahner
 	return
 
+; Overwrite Win+E for custom window placement
+#M::
+	Send, #^{Right}
+	Sleep, 50
+	Send, #^{Right}
+	Sleep, 50
+	if WinExist("ahk_exe OUTLOOK.EXE") {
+		hWnd := WinExist("ahk_exe OUTLOOK.EXE", "Tabellenansicht")
+		WinMove,ahk_id %hwnd%,,0,0,1720,1400
+		hWnd := WinExist("ahk_exe OUTLOOK.EXE", "Nachricht")
+		WinMove,ahk_id %hwnd%,,0,0,1720,1400
+		hWnd := WinExist("ahk_exe OUTLOOK.EXE", "Day View")
+		WinMove,ahk_id %hwnd%,,1720,0,1720,1400
+    } else {
+		Run, "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
+    }
+	if WinExist("ahk_exe slack.exe") {
+		hWnd := WinExist("ahk_exe slack.exe")
+		WinMove,ahk_id %hwnd%,,3440,99,960,1160
+    } else {
+		Run, "C:\Users\hahner\AppData\Local\slack\app-4.9.0\slack.exe"
+    }
+	return
+
 ; #############################################################################################################################################
 ; CAPSLOCK SHORTCUTS
 ; #############################################################################################################################################
@@ -147,6 +171,40 @@ SC00D::
 ; Mouse 4 (goto acrobat)
 ^!F9::
 	callAcrobat()
+	Return
+
+; Pen A
+^!F7::
+	if WinActive(,"OneNote for Windows 10") {
+		Sleep, 250
+		Send, {Alt}
+		Sleep, 50
+		Send, {Down}
+		Sleep, 50
+		Send, ^{Right}
+		Sleep, 50
+		Send, ^{Right}
+		Sleep, 50
+		Send, {Right}
+		Sleep, 50
+		Send, {Enter}
+	}
+	Return
+
+; Pen B
+^!F8::
+	if WinActive(,"OneNote for Windows 10") {
+		Sleep, 250
+		Send, {Alt}
+		Sleep, 50
+		Send, {Down}
+		Sleep, 50
+		Send, ^{Right}
+		Sleep, 50
+		Send, {Right}
+		Sleep, 50
+		Send, {Enter}
+	}
 	Return
 
 ; #############################################################################################################################################
