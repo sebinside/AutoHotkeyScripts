@@ -213,7 +213,7 @@ SC00D::
 
 callExplorer() {
 	IfWinNotExist, ahk_class CabinetWClass
-			Run, explorer.exe
+			Run, explorer.exe C:\hahner
 		GroupAdd, taranexplorers, ahk_class CabinetWClass 
 		if WinActive("ahk_exe explorer.exe")
 			GroupActivate, taranexplorers, r
