@@ -17,6 +17,9 @@ SetCapsLockState, AlwaysOff ; Disable Capslock
 ; OVERWRITES
 ; #############################################################################################################################################
 
++WheelDown::WheelRight
++WheelUp::WheelLeft
+
 ; Overwrites the apostrophe key to be actually usefull without dumb extra key presses
 SC00D::
  String := "`` "
@@ -250,12 +253,14 @@ callVSCode() {
 }
 
 callAcrobat() {
-	IfWinNotExist, ahk_exe Acrobat.exe
+	if !WinExist("ahk_exe Acrobat.exe") {
 			Run, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Acrobat DC.lnk"
 			Sleep, 200
 			Send {Enter}
+	} else {
 		if WinActive("ahk_exe Acrobat.exe")
 			Send ^{tab}
 		else
 			WinActivate ahk_exe Acrobat.exe
+	}
 }
