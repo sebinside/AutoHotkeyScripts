@@ -87,6 +87,10 @@ G::
 	Send, ^!j
 	return
 
+B::
+	Send, ^!b
+	return
+
 E::
 	Send, [
 	return
