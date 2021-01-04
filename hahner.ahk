@@ -83,8 +83,30 @@ V::
 	callVSCode()
 	return
 
+A::
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(-350,0,-1,-1)
+	}
+	return
+
+S::
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,-1,-1)
+	}
+	return
+
 G::
-	Send, ^!j
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(300,0,320,90)
+	} else {
+		Send, ^!j
+	}
+	return
+
+H::
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(300,0,200,120)
+	}
 	return
 
 B::
@@ -98,10 +120,18 @@ R::
 	Send, ]
 	return
 D::
-	Send, {{}
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(300,0,200,90)
+	} else {
+		Send, {{}
+	}
 	return
 F::
-	Send, {}}
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(300,0,280,120)
+	} else {
+		Send, {}}
+	}
 	return
 
 X::
@@ -266,5 +296,23 @@ callAcrobat() {
 			Send ^{tab}
 		else
 			WinActivate ahk_exe Acrobat.exe
+	}
+}
+
+sendAcrobatCenteredClick(deltaX,deltaY,secondDeltaX,secondDeltaY) {
+	if WinExist("ahk_exe Acrobat.exe") {
+		WinGetPos, X, Y, Width, Height
+		CoordMode, Mouse , Screen
+		BlockInput, MouseMove
+        MouseGetPos, curmouseX, curmouseY
+		MouseClick, left, X + Width / 2 + deltaX, Y + 160 + deltaY,, 0
+		if (secondDeltaX <> -1) {
+			sleep, 30
+			MouseClick, left, X + Width / 2 + secondDeltaX, Y + 160 + secondDeltaY,, 0
+			sleep, 10
+			MouseClick, left, X + Width / 2 + deltaX, Y + 160 + deltaY,, 0
+		}
+		MouseMove, curmouseX, curmouseY, 0
+        BlockInput, MouseMoveOff
 	}
 }
