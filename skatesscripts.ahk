@@ -18,6 +18,13 @@ SC00D::
  SendRaw %String%
 return
 
+;+F4::
+;Click, down, right
+;return
+;+F5::
+;Click, up, right
+;return
+
 ; #############################################################################################################################################
 ; CAPSLOCK SHORTCUTS
 ; #############################################################################################################################################
@@ -96,7 +103,7 @@ C::
 ^!F12::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
 		Send, N
-	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
+	} else if WinActive("Minecraft* 1.18.1 - Multiplayer (3rd-party Server)") || WinActive("Minecraft 1.7.10")  {
 		Send, 9
 	} else {
 		callExplorer()
@@ -107,7 +114,7 @@ C::
 ^!F11::
 	if WinActive("ahk_exe Adobe Premiere Pro.exe") {
 		Send, B
-	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
+	} else if WinActive("Minecraft* 1.18.1 - Multiplayer (3rd-party Server)") || WinActive("Minecraft 1.7.10")  {
 		Send, 8
 	} else {
 		callChrome()
@@ -122,8 +129,10 @@ C::
 		MouseClick, left, 110, 190,, 0
 		MouseMove, mouseX, mouseY, 0
         BlockInput, MouseMoveOff
-	} else if WinActive("Minecraft 1.14.4") || WinActive("Minecraft 1.7.10")  {
-		Send, ^{F10}
+	} else if WinActive("Minecraft* 1.18.1 - Multiplayer (3rd-party Server)") || WinActive("Minecraft 1.7.10")  {
+		Send {Click}
+		Sleep, 50
+		Send {RButton}
 	} else {
 		callVSCode()
 	}

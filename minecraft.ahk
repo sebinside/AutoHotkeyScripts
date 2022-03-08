@@ -18,7 +18,7 @@ CoordMode, Pixel, Screen
 #Include fastPixelGetColor.ahk
 ; HEADER END
 
-#ifwinactive Minecraft 1.13.2
+#ifwinactive Minecraft* 1.18.1 - Multiplayer (3rd-party Server)
 
 ; Moves all the items in the inventory to a chest
 +Q::
@@ -30,7 +30,7 @@ CoordMode, Pixel, Screen
   chestColor := 000000
   chestOffset := 0
   inventoryOpen := 0
-  WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+  WinGetPos, windowX, windowY,,,Minecraft* 1.18.1 - Multiplayer (3rd-party Server)
   PixelGetColor, inventoryOpen, windowX + 720, windowY + 400
   if(inventoryOpen != 0xC6C6C6) {
     BlockInput, MouseMoveOff
@@ -68,7 +68,7 @@ Q::
   offsetY := 567 + 31
   chestColor := 000000
   chestOffset := 0
-  WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+  WinGetPos, windowX, windowY,,,Minecraft* 1.18.1 - Multiplayer (3rd-party Server)
   PixelGetColor, inventoryOpen, windowX + 720, windowY + 400
   if(inventoryOpen != 0xC6C6C6) {
     BlockInput, MouseMoveOff
@@ -136,7 +136,7 @@ return
   windowY := 0
   offsetX := 744 + 1 + 7
   offsetY := 567 + 31
-  WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+  WinGetPos, windowX, windowY,,,Minecraft* 1.18.1 - Multiplayer (3rd-party Server)
   PixelGetColor, inventoryOpen, windowX + 720, windowY + 400
   if(inventoryOpen != 0xC6C6C6) {
     BlockInput, MouseMoveOff
@@ -248,7 +248,7 @@ windowX := 0
 windowY := 0
 offsetX := 744 + 1 + 7
 offsetY := 567 + 31
-WinGetPos, windowX, windowY,,,Minecraft 1.13.2
+WinGetPos, windowX, windowY,,,Minecraft* 1.18.1 - Multiplayer (3rd-party Server)
 PixelGetColor, inventoryOpen, windowX + 720, windowY + 400
 if(inventoryOpen == 0xC6C6C6) {
   Send {Tab}
@@ -279,106 +279,4 @@ Send {Click}
 Sleep, 20
 Send {Tab}
 BlockInput, MouseMoveOff
-return
-
-isAutocrafting := 0
-
-; Autocrafting for Kelp Compression
-; Ensure the following: Recipe book inventory mode, Showing craftable activated
-^Y::
-windowX := 0
-windowY := 0
-WinGetPos, windowX, windowY,,,Minecraft 1.13.2
-mouseX := 0
-mouseY := 0
-MouseGetPos, mouseX, mouseY 
-isAutocrafting := 1
-while isAutocrafting == 1 {
-
-; Over intput chest
-Send {RButton}
-Sleep, 500
-MouseMove, windowX + 750, windowY + 400
-Send +{Click}
-Sleep, 50
-Send {Tab}
-
-Send, {S down}
-Sleep, 1000
-Send, {S up}
-Sleep, 500
-
-; Over crafting table
-Send {RButton}
-Sleep, 500
-MouseMove, windowX + 555, windowY + 444 ; Click on recipe
-Send +{Click}
-Sleep, 250
-MouseMove, windowX + 1323, windowY + 450 ; Click on output
-Loop, 8 {
-  Send {Click}
-  Sleep, 50
-}
-Sleep, 50
-MouseMove, windowX + 1350, windowY + 767 ; Click on inventory slot
-Send {Click}
-Sleep, 50
-Send {Tab}
-
-Send, {D down}
-Sleep, 1000
-Send, {D up}
-Sleep, 500
-
-; Over output chest
-Send {RButton}
-Sleep, 500
-MouseMove, windowX + 1130, windowY + 777 ; Click on inventory slot
-Send +{Click}
-Sleep, 50
-Send {Tab}
-
-Send, {A down}
-Sleep, 1000
-Send, {A up}
-Sleep, 500
-Send, {W down}
-Sleep, 500
-Send, {W up}
-Sleep, 1000
-}
-return
-
-+^Y::
-isAutocrafting := 0
-return
-
-; Farm fast
-Y::
-Send {Click}
-Sleep, 50
-Send {RButton}
-return
-
-
-
-B::
-timerRuns := 0
-windowX := 0
-windowY := 0
-posX := 1200
-posY := 1070
-WinGetPos, windowX, windowY,,,Minecraft 1.13.2
-Send {9}
-MouseMove, 0, 1000
-SetTimer, EmergencyTimer, 1
-return
-
-EmergencyTimer:
-timerRuns := timerRuns + 1
-if(timerRuns == 200) {
-  SetTimer, EmergencyTimer, Off
-  return
-}
-Send {RButton}
 return

@@ -17,14 +17,14 @@ OpenAndMoveCuttingFolder() {
     Run, explorer.exe E:\cutting
     Sleep, 1000
     hWnd := WinExist("E:\cutting")
-    WinMove,ahk_id %hwnd%,,3433,203,974,1087
+    WinMove,ahk_id %hwnd%,,3433,247,974,1087
 }
 
 OpenAndMoveCamFolder() {
-    Run, explorer.exe E:\cam
+    Run, explorer.exe K:\cam
     Sleep, 1000
-    hWnd := WinExist("E:\cam")
-    WinMove,ahk_id %hwnd%,,4393,203,974,1087
+    hWnd := WinExist("K:\cam")
+    WinMove,ahk_id %hwnd%,,4393,247,974,1087
 }
 
 CreateAndOrderLeftScreen() {
@@ -220,29 +220,38 @@ LoadPremiereClipboard(clipName) {
 	Send, ^+a ; deselect everything
 }
 
+TargetDefaultTracks() {
+    RunWait curl ""http://localhost:8081/targetDefaultTracks"" ,,hide
+}
+
 PremierePasteAd() {
     TargetPremiereTracks(6, 1000)
     LoadPremiereClipboard("ad.clp") 
+    TargetDefaultTracks()
 }
 
 PremierePasteChapter() {
     TargetPremiereTracks(3, 1000)
     LoadPremiereClipboard("chapter.clp") 
+    TargetDefaultTracks()
 }
 
 PremierePasteGlitch() {
     TargetPremiereTracks(5, 2)
     LoadPremiereClipboard("glitch.clp") 
+    TargetDefaultTracks()
 }
 
 PremierePasteInfo() {
     TargetPremiereTracks(3, 1000)
     LoadPremiereClipboard("info.clp") 
+    TargetDefaultTracks()
 }
 
 PremierePasteIntro() {
     TargetPremiereTracks(3, 2)
     LoadPremiereClipboard("intro.clp")
+    TargetDefaultTracks()
     sleep 200
     Run https://fontawesome.com/icons?d=gallery&m=free
 }
@@ -250,16 +259,19 @@ PremierePasteIntro() {
 PremierePasteOutro() {
     TargetPremiereTracks(1, 1000)
     LoadPremiereClipboard("outro.clp") 
+    TargetDefaultTracks()
 }
 
 PremierePasteRewind() {
     TargetPremiereTracks(4, 2)
     LoadPremiereClipboard("rewind.clp") 
+    TargetDefaultTracks()
 }
 
 PremierePasteSignature() {
     TargetPremiereTracks(3, 2)
     LoadPremiereClipboard("signature.clp") 
+    TargetDefaultTracks()
 }
 
 PremiereReloadCEP2AHK() {
@@ -309,5 +321,12 @@ PremiereSaveCopyAs() {
             Send, {Enter}
         }
     }
+    return
+}
+
+RunCompress() {
+    WinGetTitle, Title, ahk_class CabinetWClass
+    ;	msgbox,% Title
+	Run, D:\Dokumente\WindowsMods\crf24_hevc.bat /E:ON "%Title%" /E:ON, "%Title%"
     return
 }
