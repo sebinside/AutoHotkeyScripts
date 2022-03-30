@@ -42,7 +42,7 @@ CreateAndOrderLeftScreen() {
         Sleep, 1000
     }
     if !WinExist("ahk_exe Scarlett MixControl.exe") {
-        Run, C:\Program Files (x86)\Focusrite\Scarlett MixControl\Scarlett MixControl.exe
+        Run, C:\Program Files\Focusriteusb\smc\Scarlett MixControl.exe
         Sleep, 1000
     }
     ; Move windows to their final position
@@ -77,7 +77,7 @@ LeftScreenActivate() {
 
 ScarlettMuteUnmute() {
     if !WinExist("ahk_exe Scarlett MixControl.exe") {
-        Run, C:\Program Files (x86)\Focusrite\Scarlett MixControl\Scarlett MixControl.exe
+        Run, C:\Program Files\Focusriteusb\smc\Scarlett MixControl.exe
         ; End here, since the window is sometimes a little bit buggy
     } else {
         WinActivate, ahk_exe Scarlett MixControl.exe
@@ -101,7 +101,7 @@ ScarlettMuteUnmute() {
 
 ScarlettVolume(volume) {
     if !WinExist("ahk_exe Scarlett MixControl.exe") {
-        Run, C:\Program Files (x86)\Focusrite\Scarlett MixControl\Scarlett MixControl.exe
+        Run, C:\Program Files\Focusriteusb\smc\Scarlett MixControl.exe
         ; End here, since the window is sometimes a little bit buggy
     } else {
         if(volume > 0) {
