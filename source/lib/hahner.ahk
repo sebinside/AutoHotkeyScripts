@@ -1,4 +1,4 @@
-﻿; WINDOWS BASICS - Simple functions which shall be present on every of my windows machines
+; WINDOWS BASICS - Simple functions which shall be present on every of my windows machines
 ; HAHNER version - optimized for work
 ; Partly based on: https://github.com/TaranVH/2nd-keyboard
 
