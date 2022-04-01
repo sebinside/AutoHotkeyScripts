@@ -51,25 +51,3 @@ C::
 
 
 #IF
-
-callEdge() {
-	IfWinNotExist, ahk_exe msedge.exe
-			Run, msedge.exe
-		if WinActive("ahk_exe msedge.exe")
-			Send ^{tab}
-		else
-			WinActivate ahk_exe msedge.exe
-}
-
-callAcrobat() {
-	if !WinExist("ahk_exe Acrobat.exe") {
-			Run, "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Acrobat DC.lnk"
-			Sleep, 200
-			Send {Enter}
-	} else {
-		if WinActive("ahk_exe Acrobat.exe")
-			Send ^{tab}
-		else
-			WinActivate ahk_exe Acrobat.exe
-	}
-}
