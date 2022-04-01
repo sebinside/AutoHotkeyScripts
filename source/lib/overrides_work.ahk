@@ -75,19 +75,19 @@ acrobatHighlightYellow() {
 
 acrobatHighlightGreen() {
 	if WinActive("ahk_exe Acrobat.exe") {
-		sendAcrobatCenteredClick(300,0,280,120)
+		sendAcrobatCenteredClick(300,0,160,90)
 	}
 }
 
 acrobatHighlightBlue() {
 	if WinActive("ahk_exe Acrobat.exe") {
-		sendAcrobatCenteredClick(300,0,320,90)
+		sendAcrobatCenteredClick(300,0,120,120)
 	}
 }
 
 acrobatHighlightRed() {
 	if WinActive("ahk_exe Acrobat.exe") {
-		sendAcrobatCenteredClick(300,0,200,120)
+		sendAcrobatCenteredClick(300,0,280,90)
 	}
 }
 
