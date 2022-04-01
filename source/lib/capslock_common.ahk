@@ -23,12 +23,6 @@ E::
 R::
 	Send, ]
 	return
-D::
-	Send, {{}
-	return
-F::
-	Send, {}}
-	return
 
 1:: 
 	Send, [1]

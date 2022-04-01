@@ -12,6 +12,13 @@ G::
 	Send, ^!j
 	return
 
+D::
+	Send, {{}
+	return
+F::
+	Send, {}}
+	return
+
 #IF
 
 callChrome() {
