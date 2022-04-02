@@ -37,7 +37,7 @@ if (colorr = timeline1 || colorr = timeline2 || colorr = timeline3 || colorr = t
 		
 		loop
 			{
-			Send ^!g ;in premiere, this is set to "move playhead to cursor."
+			Send {#} ;in premiere, this is set to "move playhead to cursor."
 			sleep 16 ;this loop will repeat every 16 milliseconds.
 			; if GetKeyState("$Rbutton") = U ; again, this does not work at all.
 			if GetKeyState("Rbutton", "P") = 0
