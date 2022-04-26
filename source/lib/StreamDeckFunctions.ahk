@@ -285,8 +285,12 @@ PremiereReloadCEP2AHK() {
     Sleep, 100
     Send, {Right}
     Sleep, 100
-    Send, {Enter}
+    Send, {Down}
     Sleep, 100
+    Send, {Down}
+    Sleep, 100
+    Send, {Enter}
+    Sleep, 300
     Send, ^w
     Sleep, 200
     Send, {Alt}
@@ -298,6 +302,10 @@ PremiereReloadCEP2AHK() {
     Send, {Down}
     Sleep, 100
     Send, {Right}
+    Sleep, 100
+    Send, {Down}
+    Sleep, 100
+    Send, {Down}
     Sleep, 100
     Send, {Enter}
 }
@@ -329,4 +337,76 @@ RunCompress() {
     ;	msgbox,% Title
 	Run, D:\Dokumente\WindowsMods\crf24_hevc.bat /E:ON "%Title%" /E:ON, "%Title%"
     return
+}
+
+; Adapted from fucntions_work.ahk
+sendAcrobatCenteredClick(deltaX,deltaY,secondDeltaX,secondDeltaY) {
+	if WinExist("ahk_exe Acrobat.exe") {
+		WinGetPos, X, Y, Width, Height
+		CoordMode, Mouse , Screen
+		BlockInput, MouseMove
+        MouseGetPos, curmouseX, curmouseY
+		MouseClick, left, X + Width / 2 + deltaX, Y + 160 + deltaY,, 0
+		if (secondDeltaX <> -1) {
+			sleep, 50
+			MouseClick, left, X + Width / 2 + secondDeltaX, Y + 160 + secondDeltaY,, 0
+		}
+		MouseMove, curmouseX, curmouseY, 0
+        BlockInput, MouseMoveOff
+	}
+}
+
+; Tax functions
+NetworkStamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,100)
+	}
+}
+
+Exp1Stamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,150)
+	}
+}
+
+Exp2Stamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,200)
+	}
+}
+
+Exp3Stamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,280)
+	}
+}
+
+OtherStamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,320)
+	}
+}
+
+DonationStamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,380)
+	}
+}
+
+PrivateStamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,450)
+	}
+}
+
+ChangeStamp() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(45,0,45,500)
+	}
+}
+
+UseText() {
+	if WinActive("ahk_exe Acrobat.exe") {
+		sendAcrobatCenteredClick(-130,0,-1,-1)
+	}
 }
