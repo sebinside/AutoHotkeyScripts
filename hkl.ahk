@@ -1,4 +1,5 @@
-﻿Class CustomFunctions {
+﻿; This file contains all function I use with HotkeylessAHK.
+Class CustomFunctions {
 
     KillOrOpenDiscord() {
         if WinExist("ahk_exe Discord.exe") {
