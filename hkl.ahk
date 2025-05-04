@@ -2,6 +2,13 @@
 ; It relies on the shared library file "lib.ahk" to work properly.
 #Include "lib.ahk"
 
+; This class is just here for demonstration purposes
+class CustomFunctions {
+    HelloWorld() {
+        MsgBox("Hello World!")
+    }
+}
+
 ; This class contains all functions for normal desktop use
 class DesktopFunctions {
 
@@ -121,39 +128,41 @@ class ScarlettFunctions {
 class PremiereFunctions {
 
     PremiereReloadCEP2AHK() {
-        Send("{Alt}")
-        Sleep(100)
-        Send("f")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Right}")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Enter}")
-        Sleep(300)
-        Send("^w")
-        Sleep(200)
-        Send("{Alt}")
-        Sleep(100)
-        Send("f")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Right}")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Down}")
-        Sleep(100)
-        Send("{Enter}")
+        if WinActive("ahk_exe Adobe Premiere Pro.exe") {
+            Send("{Alt}")
+            Sleep(100)
+            Send("f")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Right}")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Enter}")
+            Sleep(300)
+            Send("^w")
+            Sleep(200)
+            Send("{Alt}")
+            Sleep(100)
+            Send("f")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Right}")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Down}")
+            Sleep(100)
+            Send("{Enter}")
+        }
     }
 
     PremiereSaveCopyAs() {
