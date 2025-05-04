@@ -2,15 +2,15 @@
 #Requires AutoHotkey v2.0
 
 isExplorerActive() {
-    return WinActive("ahk_class CabinetWClass") != 0
+    return !!WinActive("ahk_class CabinetWClass")
 }
 
 isPremiereActive() {
-    return WinActive("ahk_exe Adobe Premiere Pro.exe") != 0
+    return !!WinActive("ahk_exe Adobe Premiere Pro.exe")
 }
 
 isMinecraftActive() {
-    return WinActive("Minecraft* 1.") != 0 || WinActive("Minecraft 1.") != 0
+    return !!WinActive("Minecraft* 1.") || !!WinActive("Minecraft 1.") || !!WinActive("FTB")
 }
 
 getTrimmedExplorerWindowTitle() {
@@ -77,9 +77,18 @@ callChrome() {
 }
 
 premiereClickOnElementPositionProperty() {
+    coordX := 85
+    coordY := 135
+
+    ; Handle MOGRTs that add another first property field
+    if (PixelGetColor(46, 133) = "0x616161") {
+        coordX := 91
+        coordY := 154
+    }
+
     BlockInput("MouseMove")
     MouseGetPos(&mouseX, &mouseY)
-    MouseClick("left", 110, 190, , 0)
+    MouseClick("left", coordX, coordY, , 0)
     MouseMove(mouseX, mouseY, 0)
     BlockInput("MouseMoveOff")
 }
