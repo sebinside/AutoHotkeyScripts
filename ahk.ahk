@@ -19,7 +19,10 @@ SC00D:: Send("{Raw}" "`` ")
 ; CAPSLOCK Overwrites
 #HotIf GetKeyState("Capslock", "P")
 {
-    L:: Reload
+    L:: {
+        Run("E:\code\HotkeylessAHK\reload.ahk")    
+        Reload
+    }
 
     E:: Send("[")
     R:: Send("]")
