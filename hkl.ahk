@@ -431,7 +431,7 @@
     }
 
     HelloWorld() {
-        MsgBox("Hello World")
+        MsgBox("Bye World")
     }
 
     SetupExalidrawLightMode() {
