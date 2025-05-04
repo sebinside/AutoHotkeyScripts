@@ -4,7 +4,7 @@ F1::
 	Run, %autohotkeyfilepath%
 	return
 
-C::
+W::
 	callChrome()
 	return
 

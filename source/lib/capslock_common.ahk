@@ -10,8 +10,36 @@ T::
 	Send \
 	return
 
+C::
+	if WinActive("ahk_class CabinetWClass") {
+		WinGetTitle, Title, ahk_class CabinetWClass
+		StringTrimRight, TrimmedTitle, Title, 17 ; Remove "- Windows Explorer"
+		;MsgBox, cmd /k "cd /d %TrimmedTitle%"
+		;return
+		Run, cmd /k "cd /d %TrimmedTitle%"
+		return
+	} else {
+		Run, cmd
+		return
+	}
+
 V::
-	callVSCode()
+	IfWinNotExist, ahk_exe Code.exe
+		if WinActive("ahk_class CabinetWClass") {
+			WinGetTitle, Title, ahk_class CabinetWClass
+			; msgbox, %Title%
+			StringTrimRight, TrimmedTitle, Title, 17 ; Remove "- Windows Explorer"
+			Run, C:\Users\Sebastian\AppData\Local\Programs\Microsoft VS Code\Code.exe %TrimmedTitle%
+			return
+		} else {
+			Run, "C:\Users\Sebastian\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+			return
+		}
+
+	if WinActive("ahk_exe Code.exe")
+		Send ^{PgDn}
+	else
+		WinActivate ahk_exe Code.exe
 	return
 X::
 	callExplorer()

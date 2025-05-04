@@ -8,13 +8,14 @@ CoordMode, Pixel, screen
 
 Menu, Tray, Icon, imageres.dll, 90
 
-timeline1 = 0x414141 ;timeline color inside the in/out points ON a targeted track
-timeline2 = 0x313131 ;timeline color of the separating LINES between targeted AND non targeted tracks inside the in/out points
-timeline3 = 0x1b1b1b ;the timeline color inside in/out points on a NON targeted track
+timeline1 = 0x3f3f3f ;timeline color inside the in/out points ON a targeted track
+timeline2 = 0x303030 ;timeline color of the separating LINES between targeted AND non targeted tracks inside the in/out points
+timeline3 = 0x3f3f3f ;the timeline color inside in/out points on a NON targeted track
 timeline4 = 0x202020 ;the color of the bare timeline NOT inside the in out points
-timeline5 = 0xDFDFDF ;the color of a SELECTED blank space on the timeline, NOT in the in/out points
-timeline6 = 0xE4E4E4 ;the color of a SELECTED blank space on the timeline, IN the in/out points, on a TARGETED track
-timeline7 = 0xBEBEBE ;the color of a SELECTED blank space on the timeline, IN the in/out points, on an UNTARGETED track
+timeline5 = 0x191919 ;the color of a SELECTED blank space on the timeline, NOT in the in/out points
+timeline6 = 0x4a4a4a ;the color of a SELECTED blank space on the timeline, IN the in/out points, on a TARGETED track
+timeline7 = 0x1d1d1d ;the color of a SELECTED blank space on the timeline, IN the in/out points, on an UNTARGETED track
+timeline8 = 0xe2e2e2 ;the color of this stupid selected room between clips
 
 
 #IfWinActive ahk_exe Adobe Premiere Pro.exe ;exact name was gotten from windowspy
@@ -24,7 +25,7 @@ Rbutton::
 ;<<<use right mouse button to move playhead in timeline>>>>>>
 MouseGetPos X, Y
 PixelGetColor colorr, %X%, %Y%, RGB
-if (colorr = timeline5 || colorr = timeline6 || colorr = timeline7) ;these are the timeline colors of a selected clip or blank space, in or outside of in/out points.
+if (colorr = timeline5 || colorr = timeline6 || colorr = timeline7 || colorr = timeline8) ;these are the timeline colors of a selected clip or blank space, in or outside of in/out points.
 	send ^+a ;set in premiere to DESELECT
 if (colorr = timeline1 || colorr = timeline2 || colorr = timeline3 || colorr = timeline4 || colorr = timeline5 || colorr = timeline6 || colorr = timeline7) ;alternatively, i think I can use "if in" for this kind of thing..
 {
