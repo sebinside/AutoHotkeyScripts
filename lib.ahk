@@ -49,13 +49,21 @@ openVSCodeInCurrentExplorerDirectory() {
 }
 
 callExplorer() {
-    if !WinExist("ahk_class CabinetWClass")
+    if !WinExist("ahk_class CabinetWClass") {
         Run("explorer.exe")
+    }
+
     GroupAdd("explorersgroup", "ahk_class CabinetWClass")
-    if WinActive("ahk_exe explorer.exe")
-        GroupActivate("explorersgroup", "r")
-    else
-        WinActivate("ahk_class CabinetWClass")
+    try {
+        if WinActive("ahk_exe explorer.exe")
+            GroupActivate("explorersgroup", "r")
+        else
+            WinActivate("ahk_class CabinetWClass")
+    }
+    catch {
+        ; ignore error
+    }
+
 }
 
 callVSCode() {
