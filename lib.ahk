@@ -92,3 +92,31 @@ premiereClickOnElementPositionProperty() {
     MouseMove(mouseX, mouseY, 0)
     BlockInput("MouseMoveOff")
 }
+
+switchActiveStreamDeckConfig() {
+    if (!WinActive("ahk_exe StreamDeck.exe")) {
+        return
+    }
+
+    ; Color of the "XL" in the Stream Deck name
+    coordX := 179
+    coordY := 43
+    color := PixelGetColor(coordX, coordY)
+
+    BlockInput("MouseMove")
+    MouseGetPos(&mouseX, &mouseY)
+
+    MouseClick("left", coordX, coordY, , 0)
+    Sleep(100)
+
+    if (color = "0xE6E6E6") {
+        ; Switch from XL to +
+        MouseClick("left", coordX, coordY + 40, , 0)
+    } else {
+        ; Switch from + to XL
+        MouseClick("left", coordX, coordY + 60, , 0)
+    }
+
+    MouseMove(mouseX, mouseY, 0)
+    BlockInput("MouseMoveOff")
+}

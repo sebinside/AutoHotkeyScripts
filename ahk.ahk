@@ -51,6 +51,7 @@ SC00D:: Send("{Raw}" "`` ")
             callVSCode()
         }
     }
+    S:: switchActiveStreamDeckConfig()
 
     1:: Send("[1]")
     2:: Send("[2]")
