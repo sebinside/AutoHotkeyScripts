@@ -221,6 +221,18 @@ class PremiereFunctions {
         RunWait("curl `"`"http://localhost:8081/targetDefaultTracks`"`" ,,hide")
     }
 
+    PremiereTracksSetLocked(locked) {
+        customURL := "http://localhost:8081/setLockedForAllTracks?locked=" . locked
+        RunWait("curl " customURL, , "hide")
+        Sleep(50)
+    }
+
+    PremiereUnlockTracks(videoTrack, audioTrack) {
+        customURL := "http://localhost:8081/unlockTracks?videoTrack=" . videoTrack . "&audioTrack=" . audioTrack
+        RunWait("curl " customURL, , "hide")
+        Sleep(50)
+    }
+
     LoadPremiereClipboard(clipName) {
 
         WinActivate("Adobe Premiere Pro")
@@ -264,6 +276,13 @@ class PremiereFunctions {
         this.TargetPremiereTracks(4, 2)
         this.LoadPremiereClipboard("rewind.clp")
         this.TargetDefaultTracks()
+    }
+
+    PremiereClipboardTest() {
+        this.PremiereTracksSetLocked("true")
+        this.PremiereUnlockTracks(3, 3)
+        this.LoadPremiereClipboard("test2.clp")
+        this.PremiereTracksSetLocked("false")
     }
 }
 
