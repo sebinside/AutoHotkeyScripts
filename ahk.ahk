@@ -5,13 +5,14 @@ SendMode("Input")
 SetWorkingDir(A_ScriptDir)
 TraySetIcon("shell32.dll", "16")
 #SingleInstance force
+#Include "vars.ahk"
 #Include "lib.ahk"
 
 SetCapsLockState("AlwaysOff") ; Disable Capslock
 SetTitleMatchMode(2) ; Title matches anything that contains the specified string
 
 ; Overwrite windows+E
-#E:: Run("explorer.exe E:\")
+#E:: Run(varDefaultExplorerCall())
 
 ; Overwrites the apostrophe key to be actually useful without dumb extra key presses
 SC00D:: Send("{Raw}" "`` ")
@@ -20,7 +21,7 @@ SC00D:: Send("{Raw}" "`` ")
 #HotIf GetKeyState("Capslock", "P")
 {
     L:: {
-        Run("E:\code\HotkeylessAHK\reload.ahk")    
+        Run(varHotkeylessAHKPath() . "reload.ahk")    
         Reload
     }
 

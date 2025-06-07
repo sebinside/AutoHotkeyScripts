@@ -1,10 +1,11 @@
 #Requires AutoHotkey v2.0
+#Include "vars.ahk"
 
-SendMode("Input") 
+SendMode("Input")
 
-SetWorkingDir("E:\code\HotkeylessAHK\")
-Run("E:\code\HotkeylessAHK\HotkeylessAHK.ahk")
+SetWorkingDir(varHotkeylessAHKPath())
+Run(varHotkeylessAHKPath() . "HotkeylessAHK.ahk")
 
-SetWorkingDir("E:\code\AutoHotkeyScripts")
-Run("E:\code\AutoHotkeyScripts\ahk.ahk")
-Run("E:\code\AutoHotkeyScripts\rightclickmod.ahk")
+SetWorkingDir(varAutoHotkeyScriptsPath())
+Run(varAutoHotkeyScriptsPath() . "ahk.ahk")
+Run(varAutoHotkeyScriptsPath() . "rightclickmod.ahk")
