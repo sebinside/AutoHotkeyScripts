@@ -66,6 +66,13 @@ SC00D:: Send("{Raw}" "`` ")
 }
 #HotIf
 
+; Hijack the very special snowflake called Copilot Key :)
+*<+<#f23:: {
+    Send("{Blind}{LShift Up}{LWin Up}{F23 Up}")
+    Sleep 10
+    Send "^+!{Ö}"
+}
+
 ; Mouse button shortcuts
 ^!F12::
 {
