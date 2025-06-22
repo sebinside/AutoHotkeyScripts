@@ -49,6 +49,10 @@ class DesktopFunctions {
     RunVSCodeInCurrentFolder() {
         openVSCodeInCurrentExplorerDirectory()
     }
+
+    SwitchVSCodeWindowSize() {
+        switchVSCodeWindowSize()
+    }
 }
 
 ; This class contains all functions for the Focusrite Scarlett MixControl
@@ -100,9 +104,6 @@ class ScarlettFunctions {
 
             MouseMove(mouseX, mouseY, 0)
             BlockInput("MouseMoveOff")
-
-            ; Restore left screen layout (where the window is usually)
-            this.LeftScreenActivate()
         }
     }
 

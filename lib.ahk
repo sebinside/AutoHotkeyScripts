@@ -128,3 +128,21 @@ switchActiveStreamDeckConfig() {
     MouseMove(mouseX, mouseY, 0)
     BlockInput("MouseMoveOff")
 }
+
+switchVSCodeWindowSize() {
+    smallX := 1264
+    smallY := 135
+    smallWidth := 1537
+    smallHeight := 1133
+    largeX := 860
+    largeY := 135
+    largeWidth := 1941
+    largeHeight := 1133
+
+    WinGetPos(&x, &y, &width, &height, "ahk_exe Code.exe")
+    if (x = smallX && y = smallY) {
+        WinMove(largeX, largeY, largeWidth, largeHeight, "ahk_exe Code.exe")
+    } else {
+        WinMove(smallX, smallY, smallWidth, smallHeight, "ahk_exe Code.exe")
+    }
+}
