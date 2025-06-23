@@ -146,3 +146,23 @@ switchVSCodeWindowSize() {
         WinMove(smallX, smallY, smallWidth, smallHeight, "ahk_exe Code.exe")
     }
 }
+
+global chatWindowForegroundState := 0 ; 0 = Twitch, 1 = Chatterino
+switchForegroundChatWindow() {
+    global
+    twitchWindowName := "skate702 – Chat - Twitch"
+    otherWindowName := "Chatterino"
+
+    if (chatWindowForegroundState = 0) {
+        if (WinExist(twitchWindowName)) {
+            WinActivate(twitchWindowName)
+        }
+        chatWindowForegroundState := 1
+    } else {
+        if (WinExist(otherWindowName)) {
+            WinActivate(otherWindowName)
+        }
+        chatWindowForegroundState := 0
+    }
+    
+}

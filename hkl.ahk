@@ -53,6 +53,10 @@ class DesktopFunctions {
     SwitchVSCodeWindowSize() {
         switchVSCodeWindowSize()
     }
+
+    SwitchForegroundChatWindow() {
+        switchForegroundChatWindow()
+    }
 }
 
 ; This class contains all functions for the Focusrite Scarlett MixControl
