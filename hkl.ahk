@@ -57,6 +57,19 @@ class DesktopFunctions {
     SwitchForegroundChatWindow() {
         switchForegroundChatWindow()
     }
+
+    OpenNotionDashboard() {
+        Run("notion://Dashboard-1731742e7e8380f4a2abd2ff29b5d9b8")
+    }
+
+    FancyZonesStandardLayout() {
+        fancyZonesLayout("Standard")
+    }
+
+    FancyZonesStreamingLayout() {
+        fancyZonesLayout("Streaming")
+    }
+    
 }
 
 ; This class contains all functions for the Focusrite Scarlett MixControl

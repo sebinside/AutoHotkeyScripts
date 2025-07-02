@@ -164,5 +164,38 @@ switchForegroundChatWindow() {
         }
         chatWindowForegroundState := 0
     }
+}
+
+fancyZonesLayout(layout) {
+    CoordMode("Mouse", "Screen")
     
+    BlockInput("MouseMove")
+    MouseGetPos(&mouseX, &mouseY)
+
+    if (layout == "Standard") {
+        MouseMove(300, 300, 0)
+        Sleep(50)
+        Send("{Ctrl down}{LWin down}{Alt down}1")
+        Send("{Ctrl up}{LWin up}{Alt up}")
+        Sleep(300)
+        MouseMove(5000, 300, 0)
+        Sleep(50)
+        Send("{Ctrl down}{LWin down}{Alt down}2")
+        Send("{Ctrl up}{LWin up}{Alt up}")
+        Sleep(300)
+    } else if (layout == "Streaming") {
+        MouseMove(300, 300, 0)
+        Sleep(50)
+        Send("{Ctrl down}{LWin down}{Alt down}3")
+        Send("{Ctrl up}{LWin up}{Alt up}")
+        Sleep(300)
+        MouseMove(5000, 300, 0)
+        Sleep(50)
+        Send("{Ctrl down}{LWin down}{Alt down}4")
+        Send("{Ctrl up}{LWin up}{Alt up}")
+        Sleep(300)
+    }
+
+    MouseMove(mouseX, mouseY, 0)
+    BlockInput("MouseMoveOff")
 }
