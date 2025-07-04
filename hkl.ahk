@@ -151,6 +151,14 @@ class PremiereFunctions {
             Sleep(100)
             Send("f")
             Sleep(100)
+
+            ; Sanity check if premiere is being premiere again
+            color := PixelGetColor(600, 500)
+            if (color != 0xf9f9f9) {
+                MsgBox("Please try again.")
+                return
+            }
+
             Send("{Down}")
             Sleep(100)
             Send("{Down}")
