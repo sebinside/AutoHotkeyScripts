@@ -12,7 +12,10 @@ SetCapsLockState("AlwaysOff") ; Disable Capslock
 SetTitleMatchMode(2) ; Title matches anything that contains the specified string
 
 ; Overwrite windows+E
-#E:: Run(varDefaultExplorerCall())
+#E:: {
+    Run(varDefaultExplorerCall())
+    tryFocus("ahk_class CabinetWClass ahk_exe explorer.exe", 2000)
+}
 
 ; Overwrites the apostrophe key to be actually useful without dumb extra key presses
 SC00D:: Send("{Raw}" "`` ")
@@ -52,6 +55,7 @@ SC00D:: Send("{Raw}" "`` ")
             callVSCode()
         }
     }
+    +V:: openVSCodeInCurrentExplorerDirectory()
     S:: switchActiveStreamDeckConfig()
 
     1:: Send("[1]")

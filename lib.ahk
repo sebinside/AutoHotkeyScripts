@@ -30,6 +30,13 @@ getTrimmedExplorerWindowTitle() {
     }
 }
 
+tryFocus(program, waitTime := 1000) {
+    Sleep(waitTime)
+    if (WinExist(program)) {
+        WinActivate(program)
+    }
+}
+
 openTerminalInCurrentExplorerDirectory() {
     if (isExplorerActive()) {
         windowTitle := getTrimmedExplorerWindowTitle()
@@ -37,6 +44,8 @@ openTerminalInCurrentExplorerDirectory() {
     } else {
         Run("wt")
     }
+
+    tryFocus("ahk_exe WindowsTerminal.exe")
 }
 
 openVSCodeInCurrentExplorerDirectory() {
@@ -46,11 +55,14 @@ openVSCodeInCurrentExplorerDirectory() {
     } else {
         Run("`"C:\Users\Sebastian\AppData\Local\Programs\Microsoft VS Code\Code.exe`"")
     }
+
+    tryFocus("ahk_exe Code.exe", 2000)
 }
 
 callExplorer() {
     if !WinExist("ahk_class CabinetWClass") {
         Run("explorer.exe")
+        tryFocus("ahk_class CabinetWClass ahk_exe explorer.exe", 2000)
     }
 
     GroupAdd("explorersgroup", "ahk_class CabinetWClass")
@@ -168,7 +180,6 @@ switchForegroundChatWindow() {
 
 fancyZonesLayout(layout) {
     CoordMode("Mouse", "Screen")
-    
     BlockInput("MouseMove")
     MouseGetPos(&mouseX, &mouseY)
 
