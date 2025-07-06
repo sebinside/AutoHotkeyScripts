@@ -69,7 +69,7 @@ class DesktopFunctions {
     FancyZonesStreamingLayout() {
         fancyZonesLayout("Streaming")
     }
-    
+
 }
 
 ; This class contains all functions for the Focusrite Scarlett MixControl
@@ -292,22 +292,31 @@ class PremiereFunctions {
         Send("^+a") ; deselect everything
     }
 
-    PremiereClipExample1() {
-        this.TargetPremiereTracks(6, 1000)
-        this.LoadPremiereClipboard("ad.clp")
-        this.TargetDefaultTracks()
+    PastePCBSoundIntro() {
+        this.PremiereTracksSetLocked("true")
+        this.PremiereUnlockTracks(1000, 2)
+        this.LoadPremiereClipboard("sound_intro.clp")
+        this.PremiereTracksSetLocked("false")
     }
 
-    PremiereClipExample2() {
-        this.TargetPremiereTracks(4, 2)
-        this.LoadPremiereClipboard("rewind.clp")
-        this.TargetDefaultTracks()
+    PastePCBSoundKeys() {
+        this.PremiereTracksSetLocked("true")
+        this.PremiereUnlockTracks(1000, 3)
+        this.LoadPremiereClipboard("sound_keys.clp")
+        this.PremiereTracksSetLocked("false")
     }
 
-    PremiereClipboardTest() {
+    PastePCBSoundWoosh() {
+        this.PremiereTracksSetLocked("true")
+        this.PremiereUnlockTracks(1000, 3)
+        this.LoadPremiereClipboard("sound_woosh.clp")
+        this.PremiereTracksSetLocked("false")
+    }
+
+    PastePCBOverlay(overlayName) {
         this.PremiereTracksSetLocked("true")
         this.PremiereUnlockTracks(3, 3)
-        this.LoadPremiereClipboard("test2.clp")
+        this.LoadPremiereClipboard(overlayName . ".clp")
         this.PremiereTracksSetLocked("false")
     }
 }
