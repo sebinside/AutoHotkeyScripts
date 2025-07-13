@@ -59,10 +59,10 @@ openVSCodeInCurrentExplorerDirectory() {
     tryFocus("ahk_exe Code.exe", 2000)
 }
 
-callExplorer() {
+callExplorer(focusDelay := 2000) {
     if !WinExist("ahk_class CabinetWClass") {
         Run("explorer.exe")
-        tryFocus("ahk_class CabinetWClass ahk_exe explorer.exe", 2000)
+        tryFocus("ahk_class CabinetWClass ahk_exe explorer.exe", focusDelay)
     }
 
     GroupAdd("explorersgroup", "ahk_class CabinetWClass")
@@ -78,22 +78,22 @@ callExplorer() {
 
 }
 
-callVSCode() {
+callVSCode(focusDelay := 2000) {
     if !WinExist("ahk_exe Code.exe")
         Run("`"C:\Users\Sebastian\AppData\Local\Programs\Microsoft VS Code\Code.exe`"")
     if WinActive("ahk_exe Code.exe")
         Send("^{PgDn}")
     else
-        WinActivate("ahk_exe Code.exe")
+        tryFocus("ahk_exe Code.exe", focusDelay)
 }
 
-callChrome() {
+callChrome(focusDelay := 1000) {
     if !WinExist("ahk_exe chrome.exe")
         Run("chrome.exe")
     if WinActive("ahk_exe chrome.exe")
         Send("^{tab}")
     else
-        WinActivate("ahk_exe chrome.exe")
+        tryFocus("ahk_exe chrome.exe", focusDelay)
 }
 
 premiereClickOnElementPositionProperty() {

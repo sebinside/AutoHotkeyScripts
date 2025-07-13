@@ -85,7 +85,7 @@ SC00D:: Send("{Raw}" "`` ")
     } else if (isMinecraftActive()) {
         Send(9)
     } else {
-        callExplorer()
+        callExplorer(0)
     }
 }
 
@@ -96,7 +96,7 @@ SC00D:: Send("{Raw}" "`` ")
     } else if (isMinecraftActive()) {
         Send(8)
     } else {
-        callChrome()
+        callChrome(0)
     }
 }
 
@@ -107,6 +107,6 @@ SC00D:: Send("{Raw}" "`` ")
     } else if (isMinecraftActive()) {
         Send(7)
     } else {
-        callVSCode()
+        callVSCode(0)
     }
 }
