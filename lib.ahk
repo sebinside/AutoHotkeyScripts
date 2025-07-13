@@ -223,6 +223,11 @@ applyPremiereEffect(effectName) {
         WinGetPos(&premiereX, &premiereY, , , "ahk_exe Adobe Premiere Pro.exe")
         ControlGetPos(&effectWindowX, &effectWindowY, , , "DroverLord - Window Class25",
             "ahk_exe Adobe Premiere Pro.exe")
+
+        if (effectWindowX < 100 || effectWindowY < 100) {
+            ControlGetPos(&effectWindowX, &effectWindowY, , , "DroverLord - Window Class29",
+            "ahk_exe Adobe Premiere Pro.exe")
+        }
     } catch {
         return
     }
@@ -232,7 +237,8 @@ applyPremiereEffect(effectName) {
 
     effectDelta := 24
     folderColor := "0xb0b0b0"
-
+    Send("^e")
+    Sleep(50)
     Send("h")
     Sleep(50)
     Send("+f")
@@ -242,7 +248,7 @@ applyPremiereEffect(effectName) {
     Send("{Del}")
     Sleep(50)
     Send(effectName)
-    Sleep(150)
+    Sleep(250)
 
     numberOfFoldersMinusOne := 0
 
@@ -258,7 +264,9 @@ applyPremiereEffect(effectName) {
     BlockInput("MouseMove")
     MouseGetPos(&mouseX, &mouseY)
 
-    MouseClickDrag("L", firstEffectX, firstEffectY + effectDelta * numberOfFoldersMinusOne, firstEffectX - 200, firstEffectY + effectDelta * numberOfFoldersMinusOne)
+    MouseClickDrag("L", firstEffectX, firstEffectY + effectDelta * numberOfFoldersMinusOne, firstEffectX - 400, firstEffectY + effectDelta * numberOfFoldersMinusOne, 30)
+
+    Sleep(100)
 
     MouseMove(mouseX, mouseY, 0)
     BlockInput("MouseMoveOff")
