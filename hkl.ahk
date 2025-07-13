@@ -323,6 +323,16 @@ class PremiereFunctions {
     ApplyPremiereEffect(effectName) {
         applyPremiereEffect(effectName)
     }
+
+    RemoveAllAttributesFromClip() {
+        if (!isPremiereActive()) {
+            return
+        }
+
+        Send("^!+v")
+        Sleep(100)
+        Send("{Enter}")
+    }
 }
 
 ; This class contains all functions for Adobe Acrobat
