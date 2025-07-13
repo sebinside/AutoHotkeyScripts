@@ -210,3 +210,56 @@ fancyZonesLayout(layout) {
     MouseMove(mouseX, mouseY, 0)
     BlockInput("MouseMoveOff")
 }
+
+applyPremiereEffect(effectName) {
+    CoordMode("Mouse", "Screen")
+    CoordMode("Pixel", "Screen")
+
+    if (!isPremiereActive()) {
+        return
+    }
+
+    try {
+        WinGetPos(&premiereX, &premiereY, , , "ahk_exe Adobe Premiere Pro.exe")
+        ControlGetPos(&effectWindowX, &effectWindowY, , , "DroverLord - Window Class25",
+            "ahk_exe Adobe Premiere Pro.exe")
+    } catch {
+        return
+    }
+
+    firstEffectX := premiereX + effectWindowX + 50
+    firstEffectY := premiereY + effectWindowY + 106
+
+    effectDelta := 24
+    folderColor := "0xb0b0b0"
+
+    Send("h")
+    Sleep(50)
+    Send("+f")
+    Sleep(50)
+    Send("^a")
+    Sleep(50)
+    Send("{Del}")
+    Sleep(50)
+    Send(effectName)
+    Sleep(150)
+
+    numberOfFoldersMinusOne := 0
+
+    loop {
+        color := PixelGetColor(firstEffectX, firstEffectY + effectDelta * numberOfFoldersMinusOne)
+        if (color = folderColor) {
+            numberOfFoldersMinusOne++
+        } else {
+            break
+        }
+    }
+
+    BlockInput("MouseMove")
+    MouseGetPos(&mouseX, &mouseY)
+
+    MouseClickDrag("L", firstEffectX, firstEffectY + effectDelta * numberOfFoldersMinusOne, firstEffectX - 200, firstEffectY + effectDelta * numberOfFoldersMinusOne)
+
+    MouseMove(mouseX, mouseY, 0)
+    BlockInput("MouseMoveOff")
+}

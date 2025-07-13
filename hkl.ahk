@@ -319,6 +319,10 @@ class PremiereFunctions {
         this.LoadPremiereClipboard(overlayName . ".clp")
         this.PremiereTracksSetLocked("false")
     }
+
+    ApplyPremiereEffect(effectName) {
+        applyPremiereEffect(effectName)
+    }
 }
 
 ; This class contains all functions for Adobe Acrobat
